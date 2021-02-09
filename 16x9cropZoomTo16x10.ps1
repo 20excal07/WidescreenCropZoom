@@ -1,3 +1,5 @@
+Add-Type -AssemblyName System.Windows.Forms
+
 $code = @"
     [DllImport("user32.dll")]
     public static extern bool BlockInput(bool fBlockIt);
