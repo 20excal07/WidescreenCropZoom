@@ -3,9 +3,6 @@ $code = @"
     public static extern bool BlockInput(bool fBlockIt);
 "@
 
-$ButtonType = [System.Windows.Forms.MessageBoxButtons]::OK
-$MessageIcon = [System.Windows.Forms.MessageBoxIcon]::Information
-
 if(!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){
     [System.Windows.Forms.MessageBox]::Show(
         "This script needs administrator privileges to work!`r`n`r`nPlease make sure to run this script as administrator.",
