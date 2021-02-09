@@ -3,6 +3,19 @@ $code = @"
     public static extern bool BlockInput(bool fBlockIt);
 "@
 
+$ButtonType = [System.Windows.Forms.MessageBoxButtons]::OK
+$MessageIcon = [System.Windows.Forms.MessageBoxIcon]::Information
+
+if(!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){
+    [System.Windows.Forms.MessageBox]::Show(
+        "This script needs administrator privileges to work!`r`n`r`nPlease make sure to run this script as administrator.",
+        "Woops!",
+        [System.Windows.Forms.MessageBoxButtons]::OK,
+        [System.Windows.Forms.MessageBoxIcon]::Exclamation
+    )
+    exit
+}
+
 $userInput = Add-Type -MemberDefinition $code -Name UserInput -Namespace UserInput -PassThru
 
 $userInput::BlockInput($true)
@@ -37,13 +50,6 @@ Set-ItemProperty -path $registryPath -name "DisableAudio" -Value 1              
 start-process magnify
 Start-Sleep -s 1
 
-<# YOU CAN DELETE EVERYTHING FROM HERE... #>
-$ButtonType = [System.Windows.Forms.MessageBoxButtons]::OK
-$MessageIcon = [System.Windows.Forms.MessageBoxIcon]::Information
-$MessageTitle = "It works!"
-$MessageBody = "If you are seeing this message, the script works as intended!`r`n`r`nYou can now go ahead and edit this script to make it launch a Steam game of your choosing. Read the comments for instructions."
-<# ...UNTIL HERE #>
-
 <#
     Uncomment the line below this comment block and change the ID to the game of your choosing.
     You can visit { https://steamdb.info } to find the ID for your game.
@@ -54,5 +60,10 @@ $MessageBody = "If you are seeing this message, the script works as intended!`r`
 $userInput::BlockInput($false)
 
 <# DELETE EVERYTHING BELOW #>
-$Result = [System.Windows.Forms.MessageBox]::Show($MessageBody,$MessageTitle,$ButtonType,$MessageIcon)
+[System.Windows.Forms.MessageBox]::Show(
+    "If you are seeing this message, the script works as intended!`r`n`r`nYou can now go ahead and edit this script to make it launch a Steam game of your choosing. Read the comments for instructions.",
+    "It works!",
+    [System.Windows.Forms.MessageBoxButtons]::OK,
+    [System.Windows.Forms.MessageBoxIcon]::Information
+)
 Stop-Process -Name "magnify"
