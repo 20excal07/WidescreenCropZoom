@@ -10,6 +10,6 @@ The mouse cursor is temporarily locked to the center of the display to ensure a 
 ```
 %systemroot%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy RemoteSigned -File "C:\16x9cropZoomTo16x10.ps1"
 ```
-  - Right-click the newly created shortcut > Properties > Advanced > check **"Run As Administrator"** (needed to temporarily lock the mouse to the center)
+  - Right-click the newly created shortcut > Properties > Advanced > check **"Run As Administrator"** (needed to temporarily lock the mouse to the center and configure the Magnifier through its registry)
 
 You should edit the script so that it launches your game instead. Read the provided comments in the script file for instructions.
