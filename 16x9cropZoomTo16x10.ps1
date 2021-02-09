@@ -31,7 +31,7 @@ Set-ItemProperty -path $registryPath -name "CenterTextInsertionPoint" -Value 0  
 
 Set-ItemProperty -path $registryPath -name "MagnifierUIWindowMinimized" -Value 1   # Start minimized
 Set-ItemProperty -path $registryPath -name "Magnification" -Value 111              # Magnification level @ 111%
-Set-ItemProperty -path $registryPath -name "ZoomIncrement" -Value 5                # Allow 1% zoom increments
+Set-ItemProperty -path $registryPath -name "ZoomIncrement" -Value 1                # Allow 1% zoom increments
 Set-ItemProperty -path $registryPath -name "DisableAudio" -Value 1                 # Disable narrator audio, just in case
 
 start-process magnify
