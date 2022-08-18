@@ -9,7 +9,7 @@ The script only works if the game's aspect ratio is wider than your display's (u
   - Right-click your desktop (or any place really) > New > Shortcut.
   - Input the following when asked for the location. Mind the script path at the end as well.
 ```
-%systemroot%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy RemoteSigned -File "C:\WidescreenCropZoom.ps1"
+%systemroot%\system32\windowspowershell\v1.0\powershell.exe -windowstyle hidden -noexit -ExecutionPolicy RemoteSigned -File "C:\WidescreenCropZoom.ps1"
 ```
   - Right-click the newly created shortcut > Properties > Advanced > check **"Run As Administrator"** (needed to temporarily lock the mouse to the center and configure the Magnifier through its registry)
 
