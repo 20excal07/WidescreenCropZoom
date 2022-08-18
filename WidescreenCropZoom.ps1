@@ -1,6 +1,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 $AspectRatio_GameX=16    # Specify the game's locked aspect ratio here... (width)
 $AspectRatio_GameY=9     # ... and here (height)
+# you can also just specify the resolution you're using, and the math below will do the rest
 
 $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
 
@@ -80,20 +81,25 @@ Set-ItemProperty -path $registryPath -name "DisableAudio" -Value 1              
 start-process magnify
 Start-Sleep -s 1
 
+$userInput::BlockInput($false)
+
 <#
-    Uncomment the line below this comment block and change the ID to the game of your choosing.
+    Uncomment one of the lines below this comment block and change the ID to the game of your choosing.
     You can visit { https://steamdb.info } to find the ID for your game.
     Alternatively, provide a full path to your game's executable instead of "explorer steam://" if it's non-Steam.
 #>
 #start-process explorer steam://rungameid/738540
+#start-process C:\Path\To\Executable.exe -Wait
+#start-process C:\Path\To\Executable.exe -Wait -ArgumentList "--arg1 --arg2 --etc"
 
-$userInput::BlockInput($false)
-
-<# DELETE EVERYTHING BELOW #>
+<# DELETE EVERYTHING BETWEEN THIS #>
 [System.Windows.Forms.MessageBox]::Show(
     "If you are seeing this message, the script works as intended!`r`n`r`nYou can now go ahead and edit this script to make it launch a Steam game of your choosing. Read the comments for instructions.",
     "It works!",
     [System.Windows.Forms.MessageBoxButtons]::OK,
     [System.Windows.Forms.MessageBoxIcon]::Information
 )
+<# DELETE EVERYTHING BETWEEN THIS #>
+
+# Delete this part if you're using "steam://", or Magnifier will close immediately after launching
 Stop-Process -Name "magnify"
